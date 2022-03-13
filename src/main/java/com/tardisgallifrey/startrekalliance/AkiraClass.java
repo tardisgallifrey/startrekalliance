@@ -16,4 +16,8 @@ public class AkiraClass {
     public void set_shipname(String _shipname) {
         this._shipname = _shipname;
     }
+
+    public void Create(){
+        
+    }
 }

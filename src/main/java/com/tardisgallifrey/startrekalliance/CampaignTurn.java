@@ -47,11 +47,59 @@ public class CampaignTurn {
 
     }
 
-    public void fleetsetup(){
+
+    public void fleetsetup(){        
+
+        DominionSetup myDomSet = new DominionSetup(1);
+        int dominionshipnum = 0;
+        int playershipnum = 0;
+        int federationShip1 = 0;
 
         System.out.println("We are now in Fleet Setup.");
+        System.out.print("How many player Federation ships are there (1 or 2)?  ");
+        playershipnum = s.nextInt();
 
-        
+        switch(playershipnum){
+            case 1: 
+                System.out.print("Do you choose 1) Akira Class or 2) Excelsior Class?  ");
+                federationShip1 = s.nextInt();
+                if(federationShip1 == 1){
+                    System.out.print("What name do you wish to give this ship?  ");
+                    AkiraClass FedShip1 = new AkiraClass("Dauntless");
+                    FedShip1.Create();
+                }else if(federationShip1 > 1){
+                    System.out.print("What name do you wish to give this ship?  ");
+                    ExcelsiorClass FedShip1 = new ExcelsiorClass("Dauntless");
+                    FedShip1.Create();
+                }
+                System.out.print("How many Dominion ships are there (1 - 4)? ");
+                dominionshipnum = s.nextInt();
+                myDomSet.set_numShips(dominionshipnum);
+                break;
+            case 2:
+                if(federationShip1 == 1){
+                    System.out.print("What do you wish to name the second Federation Ship?  ");
+                    ExcelsiorClass FedShip2 = new ExcelsiorClass("Dauntless");
+                    FedShip2.Create();
+                }else{
+                    System.out.print("What do you wish to name the second Federation Ship?  ");
+                    AkiraClass FedShip2 = new AkiraClass("Dauntless");
+                    FedShip2.Create();
+                }
+                System.out.print("How many Dominion ships are there (2 - 8)? ");
+                dominionshipnum = s.nextInt();
+                myDomSet.set_numShips(dominionshipnum);
+            default:
+                System.out.println("You did not choose 1 or 2. Setting default which you may change later.");
+                AkiraClass myFedship = new AkiraClass("Intrepid");
+                myFedship.Create();
+                myDomSet.set_numShips(1);
+
+        }
+
+
+        System.out.println("Display ship data for Federation.");
+        System.out.println("Display ship data for Dominion");
         AreWeDone("Fleet Setup");        
 
     }

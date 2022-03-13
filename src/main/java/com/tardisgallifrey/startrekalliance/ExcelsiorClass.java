@@ -16,4 +16,7 @@ public class ExcelsiorClass {
         this._shipname = _shipname;
     }
     
+    public void Create(){
+        
+    }
 }
