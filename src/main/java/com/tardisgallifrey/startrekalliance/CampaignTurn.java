@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class CampaignTurn {
     
-    Scanner s = new Scanner(System.in); //Establish new Scanner object for keyboard response
+    Scanner s = new Scanner(System.console().reader()); //Establish new Scanner object for keyboard response
+    DominionSetup myDomSet = new DominionSetup(1);
+
 
     //Method to check if each phase is complete
     private void AreWeDone(String phasename){
@@ -50,7 +52,6 @@ public class CampaignTurn {
 
     public void fleetsetup(){        
 
-        DominionSetup myDomSet = new DominionSetup(1);
         int dominionshipnum = 0;
         int playershipnum = 0;
         int federationShip1 = 0;
@@ -58,6 +59,7 @@ public class CampaignTurn {
         System.out.println("We are now in Fleet Setup.");
         System.out.print("How many player Federation ships are there (1 or 2)?  ");
         playershipnum = s.nextInt();
+        
 
         switch(playershipnum){
             case 1: 
@@ -65,11 +67,11 @@ public class CampaignTurn {
                 federationShip1 = s.nextInt();
                 if(federationShip1 == 1){
                     System.out.print("What name do you wish to give this ship?  ");
-                    AkiraClass FedShip1 = new AkiraClass("Dauntless");
+                    AkiraClass FedShip1 = new AkiraClass(System.console().readLine());
                     FedShip1.Create();
                 }else if(federationShip1 > 1){
                     System.out.print("What name do you wish to give this ship?  ");
-                    ExcelsiorClass FedShip1 = new ExcelsiorClass("Dauntless");
+                    ExcelsiorClass FedShip1 = new ExcelsiorClass(System.console().readLine());
                     FedShip1.Create();
                 }
                 System.out.print("How many Dominion ships are there (1 - 4)? ");
@@ -79,11 +81,11 @@ public class CampaignTurn {
             case 2:
                 if(federationShip1 == 1){
                     System.out.print("What do you wish to name the second Federation Ship?  ");
-                    ExcelsiorClass FedShip2 = new ExcelsiorClass("Dauntless");
+                    ExcelsiorClass FedShip2 = new ExcelsiorClass(System.console().readLine());
                     FedShip2.Create();
                 }else{
                     System.out.print("What do you wish to name the second Federation Ship?  ");
-                    AkiraClass FedShip2 = new AkiraClass("Dauntless");
+                    AkiraClass FedShip2 = new AkiraClass(System.console().readLine());
                     FedShip2.Create();
                 }
                 System.out.print("How many Dominion ships are there (2 - 8)? ");
@@ -91,15 +93,13 @@ public class CampaignTurn {
                 myDomSet.set_numShips(dominionshipnum);
             default:
                 System.out.println("You did not choose 1 or 2. Setting default which you may change later.");
-                AkiraClass myFedship = new AkiraClass("Intrepid");
+                AkiraClass myFedship = new AkiraClass(System.console().readLine());
                 myFedship.Create();
                 myDomSet.set_numShips(1);
 
         }
 
 
-        System.out.println("Display ship data for Federation.");
-        System.out.println("Display ship data for Dominion");
         AreWeDone("Fleet Setup");        
 
     }
