@@ -10,8 +10,6 @@ public class App{
         
         mySetup.planningphase();
 
-        mySetup.movementphase();
-
         mySetup.activationphase();
 
         mySetup.combatphase();

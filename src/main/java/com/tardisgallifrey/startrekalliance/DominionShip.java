@@ -1,11 +1,11 @@
 package com.tardisgallifrey.startrekalliance;
 
-public class ExcelsiorClass {
+public class DominionShip {
     private String _shipname;
-    
-    ExcelsiorClass(String shipname){
+
+    DominionShip(String shipname){
         set_shipname(shipname);
-        System.out.println("You just created the Excelsior Class ship " + get_shipname() + ".\n");
+        System.out.println("You have created the Domion ship " + get_shipname() + ".\n");
     }
 
     public String get_shipname() {

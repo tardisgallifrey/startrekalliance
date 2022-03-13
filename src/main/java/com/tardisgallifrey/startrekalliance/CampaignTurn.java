@@ -16,39 +16,77 @@ public class CampaignTurn {
         if(answer == 'y' || answer == 'Y'){
             System.out.println(phasename + " is complete.  Moving on.\n");
         }else{
-            System.out.println("Not ready.  Star Trek Alliance exiting...\n");
-            System.exit(0);
+            System.out.println("Not ready.  Star Trek Alliance returning to " + phasename + "\n");
+            
+            switch(phasename) {
+                case "Fleet Setup" :
+                   this.fleetsetup();
+                   break;
+                
+                case "Federation planning phase" :
+                   this.planningphase();
+                   break; 
+                
+                case "Activation" :
+                    this.activationphase();
+                    break;
+
+                case "Combat phase" :
+                    this.combatphase();
+                    break;
+
+                case "End phase" :
+                    this.endphase();
+                    break;
+
+                default : 
+                   System.out.println("Don't know which phase we are in.  Exiting.");
+                   System.exit(0);
+             }
         }
 
     }
 
-
     public void fleetsetup(){
+
         System.out.println("We are now in Fleet Setup.");
 
-        AkiraClass ship = new AkiraClass("Dauntless");
-
+        
         AreWeDone("Fleet Setup");        
 
     }
 
     public void planningphase(){
+
         System.out.println("We are in the Federation player planning phase.");
 
         AreWeDone("Federation planning phase");  
     }
 
-    public void movementphase(){
-        System.out.println("We are in the Movement phase.");
-
-        AreWeDone("Movement Phase");  
-    }
-
     public void activationphase(){
         System.out.println("We are in the Activation phase.");
 
+        FedMove();
+
         AreWeDone("Activation");  
     }
+
+    static void FedMove(){
+        System.out.println("Federation movement phase.");
+    }
+
+    static void DominionMove(){
+        System.out.println("Dominion movement phase.");
+    }
+
+    static void FedAction(){
+        System.out.println("Federation action phase.");
+    }
+
+    static void DominionAction(){
+        System.out.println("Dominion action phase.");
+    }
+
 
     public void combatphase(){
         System.out.println("We are in the Combat phase.");

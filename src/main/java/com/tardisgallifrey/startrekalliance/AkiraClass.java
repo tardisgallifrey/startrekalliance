@@ -6,7 +6,7 @@ public class AkiraClass {
 
     AkiraClass(String shipname){
             set_shipname(shipname);
-            System.out.println("You just created the Akira Class ship " + shipname + ".\n");
+            System.out.println("You just created the Akira Class ship " + get_shipname() + ".\n");
     }
 
     public String get_shipname() {
