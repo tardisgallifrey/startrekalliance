@@ -1,6 +1,6 @@
 <h1>Star Trek Alliance game helper app</h1>
 
-<p>I received a game at Christmas called Star Trek Alliance. It is a miniatures strategy game based on Star Wars: X Wing game.  These are both <a href="https://fantasyflightgames.com>from Fantasy Flight Games</a>.</p>
+<p>I received a game at Christmas called Star Trek Alliance. It is a miniatures strategy game based on Star Wars: X Wing game.  These are both <a href="https://fantasyflightgames.com">from Fantasy Flight Games</a>.</p>
 
 <p>Recently set up the game to play for the first time.  I like the detailed nature of the game and it's open play, but the turn-of-play is rather complicated.  Very straightfoward, but also complicated.  I find myself not keeping things in the proper order.  So, I thought this might be a good idea for a first Java project.  And, this is it.</p>
 
