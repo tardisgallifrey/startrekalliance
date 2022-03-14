@@ -6,9 +6,11 @@ public class CampaignTurn {
     
     Scanner s = new Scanner(System.console().reader()); //Establish new Scanner object for keyboard response
     DominionSetup myDomSet = new DominionSetup(1);
+    FleetShipList myFleet = new FleetShipList(0, "", "");
 
 
     //Method to check if each phase is complete
+    //If the answer is no, we will rerun the method
     private void AreWeDone(String phasename){
 
         System.out.print("Are you complete with " + phasename + "(y or n)?  ");
@@ -49,53 +51,80 @@ public class CampaignTurn {
 
     }
 
-
+    //Actual Fleet Setup
+    //First determine how many Federation player ships there are.
+    //From that, we create the correct ships and types plus create
+    //The Dominion Squadrons.
+    //Even if there is just one ship, it will run as a Dominion Squadron
     public void fleetsetup(){        
 
-        int dominionshipnum = 0;
-        int playershipnum = 0;
-        int federationShip1 = 0;
+        int dominionshipnum = 0;  //Initialize how many Dominion Ships
+        int playershipnum = 0;      //Initialize how many Federation player ships
+        int federationShip1 = 0;    //Initialize which class number will be the one player
+                                    //Federation ship, Akira or Excelsior
 
         System.out.println("We are now in Fleet Setup.");
         System.out.print("How many player Federation ships are there (1 or 2)?  ");
         playershipnum = s.nextInt();
         
 
+        //Yes, this switch is complicated, but if you'ver ever done compiler programming,
+        //you'll understand it is legal, I think.
+        //We use the switch to determine are we building a single Federation Ship game or
+        //a two Federation Ship game, name our ships, determine the quantity of Dominion Ships
+        //And create and display each one.
         switch(playershipnum){
             case 1: 
                 System.out.print("Do you choose 1) Akira Class or 2) Excelsior Class?  ");
                 federationShip1 = s.nextInt();
                 if(federationShip1 == 1){
                     System.out.print("What name do you wish to give this ship?  ");
-                    AkiraClass FedShip1 = new AkiraClass(System.console().readLine());
-                    FedShip1.Create();
+                    
+                    String shipname = System.console().readLine();
+                    myFleet.set_playershipnum(1);
+                    myFleet.set_AkiraClassname(shipname);
+                    myFleet.set_ExcelsiorClassname("");
+                    myFleet.CreateShipObjects();
+
                 }else if(federationShip1 > 1){
                     System.out.print("What name do you wish to give this ship?  ");
-                    ExcelsiorClass FedShip1 = new ExcelsiorClass(System.console().readLine());
-                    FedShip1.Create();
+                    String shipname = System.console().readLine();
+                    myFleet.set_ExcelsiorClassname(shipname);
+                    myFleet.set_AkiraClassname("");
+                    myFleet.CreateShipObjects();
+                    
                 }
                 System.out.print("How many Dominion ships are there (1 - 4)? ");
                 dominionshipnum = s.nextInt();
                 myDomSet.set_numShips(dominionshipnum);
+                myDomSet.CreateDomSquadrons();
                 break;
+
             case 2:
-                if(federationShip1 == 1){
-                    System.out.print("What do you wish to name the second Federation Ship?  ");
-                    ExcelsiorClass FedShip2 = new ExcelsiorClass(System.console().readLine());
-                    FedShip2.Create();
-                }else{
-                    System.out.print("What do you wish to name the second Federation Ship?  ");
-                    AkiraClass FedShip2 = new AkiraClass(System.console().readLine());
-                    FedShip2.Create();
-                }
+                System.out.print("Choose a name for the Excelsior Class ship.  ");
+                String FedShip1 = System.console().readLine();
+
+                System.out.print("Choose a name for the Akira Class ship.  ");
+                String FedShip2 = System.console().readLine();
+                myFleet.set_playershipnum(2);
+                myFleet.set_AkiraClassname(FedShip2);
+                myFleet.set_ExcelsiorClassname(FedShip1);
+                myFleet.CreateShipObjects();
+
                 System.out.print("How many Dominion ships are there (2 - 8)? ");
                 dominionshipnum = s.nextInt();
                 myDomSet.set_numShips(dominionshipnum);
+                myDomSet.CreateDomSquadrons();
+                break;
+
             default:
                 System.out.println("You did not choose 1 or 2. Setting default which you may change later.");
-                AkiraClass myFedship = new AkiraClass(System.console().readLine());
-                myFedship.Create();
+                myFleet.set_playershipnum(1);
+                myFleet.set_AkiraClassname("Dauntless");
+                myFleet.set_ExcelsiorClassname("");
+                myFleet.CreateShipObjects();
                 myDomSet.set_numShips(1);
+                myDomSet.CreateDomSquadrons();
 
         }
 

@@ -15,5 +15,9 @@ public class DominionSetup {
         this._numShips = _numShips;
     }
 
+    public void CreateDomSquadrons(){
+        
+    }
+
     
 }
