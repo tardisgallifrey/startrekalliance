@@ -56,6 +56,10 @@ public class FleetShipList {
             fleetAkira.Create();
             fleetAkira.Display();
 
+            DominionShip Dom1 = new DominionShip("Dominion 1");
+            Dom1.Create();
+            Dom1.Display();
+
         }
     }
 }
