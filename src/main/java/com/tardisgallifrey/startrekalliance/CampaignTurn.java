@@ -8,6 +8,7 @@ public class CampaignTurn {
     DominionSetup myDomSet = new DominionSetup(1);
     FleetShipList myFleet = new FleetShipList(0, "", "");
 
+    //Create Campaign class to loop campaing turns.
 
     //Method to check if each phase is complete
     //If the answer is no, we will rerun the method
@@ -135,7 +136,13 @@ public class CampaignTurn {
 
     public void planningphase(){
 
+        System.out.println("Will there be a reinforcement phase on this turn?");
+            //code for reinforcements goes here.
+
         System.out.println("We are in the Federation player planning phase.");
+        
+        System.out.println("1. Each player chooses one maneuver for each ship they control.\n"+
+                            "2. Dominion ships skip this step.\n");
 
         AreWeDone("Federation planning phase");  
     }
@@ -143,7 +150,18 @@ public class CampaignTurn {
     public void activationphase(){
         System.out.println("We are in the Activation phase.");
 
+        System.out.println("1. In ascending order of Captain skill, reveal move choice \n"+
+                            "\tand move.  Dominion ships use logic AI card.\n"+
+                            "2. Immediateley following each ship movement, choose an Action.\n"+
+                            "3. Complete Action before next ship moves.");
+
+        //This will be a loop based on number of captains
+        //Will need a way sort captains by ascending order
         FedMove();
+        FedAction();
+        DominionMove();
+        DominionAction();
+
 
         AreWeDone("Activation");  
     }
@@ -168,11 +186,28 @@ public class CampaignTurn {
     public void combatphase(){
         System.out.println("We are in the Combat phase.");
 
+        System.out.println("1. In descending order of captain skill, perform one attack,\n"+
+                            "\tif able.\n"+
+                            "2. Dominion ships use AI logic card for combat.\n"+
+                            "3. Ship can only fire primary weapon if enemy is in range,\n"+
+                            "\tand inside firing arc (solid lines).  Dashed lines are secondary weapon,\n"+
+                            "\tand only for weapon upgrades or abilities.");
+
         AreWeDone("Combat phase");
     }
 
     public void endphase(){
         System.out.println("We are in the End Phase");
+
+        System.out.println("1. Resolve and cards with End Phase header.\n"+
+                            "2. All disabled shield tokens turn back to blue.\n"+
+                            "3. Remove unused Scan, Evade, and Battle stations.\n"+
+                            "4. Unused Target Lock remains on table.\n"+
+                            "5. Red Cloak tokens removed.\n"+
+                            "6. Green Cloak tokens stay if player keeps shields red.\n"+
+                            "\nPlace Cloak tokens remaining beside ship.\n"+
+                            "7. Resolve 'During End Phase' cards or abilities.\n"+
+                            "8. Check win-loss conditions.");
 
         AreWeDone("End Phase");
     }
